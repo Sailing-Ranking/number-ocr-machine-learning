@@ -1,4 +1,4 @@
-name: ml
+name: CML
 on: [push]
 jobs:
   run:
@@ -31,4 +31,3 @@ jobs:
           cml asset publish loss_vs_val_loss.png --md >> report.md
 
           cml comment create report.md
-          cml send-comment report.md
