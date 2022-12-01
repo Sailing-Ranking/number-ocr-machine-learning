@@ -18,13 +18,13 @@ jobs:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Post reports as comments in GitHub PRs
-          echo "# Model Report" > report.md
+          echo "# Model Report" >> report.md
 
-          echo "## Metrics" > report.md 
+          echo "## Metrics" >> report.md 
           cat results.txt >> report.md
  
-          echo "## Visualizations" > report.md
-          cml asset publish acc_vs_val_acc.png
-          cml asset publish loss_vs_val_loss.png
+          echo "## Visualizations" >> report.md
+          cml asset publish acc_vs_val_acc.png --md >> report.md
+          cml asset publish loss_vs_val_loss.png --md >> report.md
 
           cml comment create report.md
