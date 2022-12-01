@@ -52,7 +52,7 @@ recall = recall_score(y_test, y_pred, average="micro")
 print(acc, bacc, precision, recall)
 
 with open("results.txt", 'w') as f:
-    f.write(f"Accuracy: {acc}\nBalanced Accuracy: {bacc}\nPrecision: {precision}\nRecall: {recall}")
+    f.write(f"Accuracy: {acc}\nBalanced Accuracy: {bacc}\nPrecision: {precision}\nRecall: {recall}\n")
 
 # Accuracy vs Validation Accuracy
 plt.figure(figsize=(7, 7))
