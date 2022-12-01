@@ -34,7 +34,7 @@ model.compile(
     metrics=["accuracy"]
 )
 
-history = model.fit(X_train, y_train, validation_split=.25, epochs=1)
+history = model.fit(X_train, y_train, validation_split=.25, epochs=5)
 
 
 # Evaluation
