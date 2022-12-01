@@ -36,7 +36,7 @@ model.compile(
 history = model.fit(X_train, y_train, validation_split=0.25, epochs=2)
 
 
-model.save("./data/model/cnn_classifier")
+model.save("./data/experiment/cnn_classifier")
 
-with open("./data/model/history.json", "w") as f:
+with open("./data/experiment/history.json", "w") as f:
     json.dump(history.history, f)

@@ -2,7 +2,7 @@ import json
 
 import matplotlib.pyplot as plt
 
-with open("./data/model/history.json") as f:
+with open("./data/experiment/history.json") as f:
     history = json.load(f)
 
     # Accuracy vs Validation Accuracy
@@ -13,7 +13,7 @@ with open("./data/model/history.json") as f:
     plt.ylabel("accuracy")
     plt.xlabel("epoch")
     plt.legend(["train", "validation"], loc="upper left")
-    plt.savefig("./data/model/acc_vs_val_acc.png", dpi=120)
+    plt.savefig("./data/experiment/acc_vs_val_acc.png", dpi=120)
     plt.close()
 
     # Loss vs Validation Loss
@@ -24,5 +24,5 @@ with open("./data/model/history.json") as f:
     plt.ylabel("loss")
     plt.xlabel("epoch")
     plt.legend(["train", "validation"], loc="upper left")
-    plt.savefig("./data/model/loss_vs_val_loss.png", dpi=120)
+    plt.savefig("./data/experiment/loss_vs_val_loss.png", dpi=120)
     plt.close()
