@@ -7,9 +7,13 @@ jobs:
     # container: ghcr.io/iterative/cml:0-dvc2-base1
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
+      # may need to setup NodeJS & Python3 on e.g. self-hosted
+      # - uses: actions/setup-node@v3
+      #   with:
+      #     node-version: '16'
+      # - uses: actions/setup-python@v4
+      #   with:
+      #     python-version: '3.x'
       - uses: iterative/setup-cml@v1
       - name: Train model
         run: |
@@ -20,15 +24,14 @@ jobs:
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "$REPO_TOKEN"
-          # # Post reports as comments in GitHub PRs
-          # echo "# Model Report" >> report.md
+          # Post reports as comments in GitHub PRs
+          echo "# Model Report" >> report.md
 
-          # echo "## Metrics" >> report.md 
-          # cat results.txt >> report.md
+          echo "## Metrics" >> report.md 
+          cat results.txt >> report.md
  
-          # echo "## Visualizations" >> report.md
-          # cml asset publish acc_vs_val_acc.png --md >> report.md
-          # cml asset publish loss_vs_val_loss.png --md >> report.md
-
-          # cml comment create report.md
+          echo "## Visualizations" >> report.md
+          cml asset publish acc_vs_val_acc.png --md >> report.md
+          cml asset publish loss_vs_val_loss.png --md >> report.md
+          
+          cml comment create report.md
