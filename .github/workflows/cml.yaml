@@ -6,8 +6,8 @@ jobs:
     # optionally use a convenient Ubuntu LTS + DVC + CML image
     container: ghcr.io/iterative/cml:0-dvc2-base1
     steps:
+      - uses: iterative/setup-cml@v1
       - uses: actions/checkout@v3
-      # - uses: iterative/setup-cml@v1
       - name: Train model
         run: |
           # Your ML workflow goes here
