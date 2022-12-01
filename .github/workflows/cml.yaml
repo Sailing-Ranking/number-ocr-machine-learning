@@ -21,8 +21,8 @@ jobs:
           pip install -r requirements.txt
           python train.py
       - name: Write CML report
-        env:
-          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # env:
+        #   REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Post reports as comments in GitHub PRs
           echo "# Model Report" >> report.md
