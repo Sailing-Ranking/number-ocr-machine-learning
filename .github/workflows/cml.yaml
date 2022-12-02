@@ -18,7 +18,8 @@ jobs:
       - name: Train model
         run: |
           # setup dependencies
-          pip install pipenv
+          python -m pip install --upgrade setuptools wheel
+          python -m pip install --upgrade pipenv
           pipenv install --dev
 
           # run the dvc pipeline
