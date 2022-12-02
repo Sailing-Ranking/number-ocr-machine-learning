@@ -34,7 +34,7 @@ jobs:
           cat data/experiment/metrics.json >> report.md
  
           echo "## Visualizations" >> report.md
-          cml asset publish data/experiment/plots.acc_vs_val_acc.png --md >> report.md
+          cml asset publish data/experiment/plots/acc_vs_val_acc.png --md >> report.md
           cml asset publish data/experiment/plots/loss_vs_val_loss.png --md >> report.md
           
           cml comment create report.md
