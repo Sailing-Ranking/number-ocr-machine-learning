@@ -1,7 +1,8 @@
 import json
-from utils import load_params
 
 import tensorflow as tf
+
+from utils import load_params
 
 params = load_params()
 
@@ -18,15 +19,19 @@ model = tf.keras.Sequential(
             input_shape=params["model"]["input_shape"],
         ),
         tf.keras.layers.AveragePooling2D(params["model"]["pooling"]),
-
-        tf.keras.layers.Conv2D(params["model"]["filters"] * 2, params["model"]["kernel_size"], activation=params["model"]["activation"]),
+        tf.keras.layers.Conv2D(
+            params["model"]["filters"] * 2,
+            params["model"]["kernel_size"],
+            activation=params["model"]["activation"],
+        ),
         tf.keras.layers.AveragePooling2D(params["model"]["pooling"]),
-
-        tf.keras.layers.Conv2D(params["model"]["filters"] * 2, params["model"]["kernel_size"], activation=params["model"]["activation"]),
+        tf.keras.layers.Conv2D(
+            params["model"]["filters"] * 2,
+            params["model"]["kernel_size"],
+            activation=params["model"]["activation"],
+        ),
         tf.keras.layers.AveragePooling2D(params["model"]["pooling"]),
-
         tf.keras.layers.Dropout(params["model"]["dropout"]),
-
         tf.keras.layers.Flatten(),
         tf.keras.layers.Dense(params["model"]["filters"] * 4, activation="relu"),
         tf.keras.layers.Dense(params["model"]["filters"] * 2, activation="relu"),
@@ -40,7 +45,9 @@ model.compile(
     metrics=[params["compile"]["metrics"]],
 )
 
-history = model.fit(X_train, y_train, validation_split=params["train"]["validation_split"], epochs=2)
+history = model.fit(
+    X_train, y_train, validation_split=params["train"]["validation_split"], epochs=2
+)
 
 
 model.save("data/experiment/cnn_classifier")

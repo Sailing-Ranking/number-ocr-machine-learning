@@ -32,10 +32,10 @@ jobs:
           # Post reports as comments in GitHub PRs
           echo "# Model Report" >> report.md
 
-          echo "## Metrics" >> report.md 
-          cat data/experiment/metrics.json >> report.md
+          # echo "## Metrics" >> report.md 
+          # cat data/experiment/metrics.json >> report.md
 
-          echo "## Diff" >> report.md
+          echo "## Metrics & Diff" >> report.md
           dvc metrics diff --show-md master > report.md
  
           echo "## Visualizations" >> report.md
