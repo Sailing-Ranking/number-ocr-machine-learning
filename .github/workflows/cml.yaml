@@ -18,12 +18,10 @@ jobs:
       - name: Train model
         run: |
           # setup dependencies
-          python -m pip install --upgrade setuptools wheel
-          python -m pip install --upgrade pipenv
-          pipenv install --dev
+          pipinstall -r requirements.txt
 
           # run the dvc pipeline
-          pipenv run dvc run repro
+          dvc run repro
       - name: Write CML report
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
