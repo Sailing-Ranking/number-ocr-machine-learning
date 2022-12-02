@@ -18,7 +18,7 @@ jobs:
       - name: Train model
         run: |
           # setup dependencies
-          pipinstall -r requirements.txt
+          pip install -r requirements.txt
 
           # run the dvc pipeline
           dvc run repro
