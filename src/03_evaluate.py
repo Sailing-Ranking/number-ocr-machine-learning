@@ -9,7 +9,7 @@ from sklearn.metrics import (
     recall_score,
 )
 
-model = tf.keras.models.load_model("./data/experiment/cnn_classifier")
+model = tf.keras.models.load_model("data/experiment/cnn_classifier")
 
 (_, _), (X_test, y_test) = tf.keras.datasets.mnist.load_data()
 
@@ -25,7 +25,7 @@ precision = precision_score(y_test, y_pred, average="micro")
 recall = recall_score(y_test, y_pred, average="micro")
 
 
-with open("./data/experiment/metrics.json", "w") as f:
+with open("data/experiment/metrics.json", "w") as f:
     json.dump(
         {
             "accuracy": acc,

@@ -1,0 +1,16 @@
+model:
+  filters: 32
+  kernel_initializer: "he_uniform"
+  input_shape: [28, 28, 1]
+  activation: "relu"
+  out_activation: "softmax"
+  pooling: [2, 2]
+  kernel_size: [3, 3]
+  dropout: .5
+compile:
+  metrics: "accuracy"
+train:
+  validation_split: .25
+  epochs: 2
+evaluate:
+  average: "micro"
