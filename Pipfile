@@ -23,6 +23,7 @@ dvc = "*"
 pytest = "*"
 coverage = "*"
 pytest-cov = "*"
+dvc-gdrive = "*"
 
 [dev-packages]
 
