@@ -1,0 +1,45 @@
+name: CML
+on: [push]
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    # optionally use a convenient Ubuntu LTS + DVC + CML image
+    # container: docker://ghcr.io/iterative/cml:0-dvc2-base1
+    steps:
+      - uses: iterative/setup-cml@v1
+      - uses: iterative/setup-dvc@v1
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      
+      - name: Train model
+        run: |
+          # setup dependencies
+          pip install pipenv
+          pipenv install --dev
+
+          # run the dvc pipeline
+          pipenv run dvc repro
+      - name: Write CML report
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git fetch --prune
+
+          # Post reports as comments in GitHub PRs
+          echo "# Model Report" >> report.md
+
+          # echo "## Metrics" >> report.md 
+          # cat data/experiment/metrics.json >> report.md
+
+          echo "## Metrics & Diff" >> report.md
+          dvc metrics diff --show-md master > report.md
+ 
+          echo "## Visualizations" >> report.md
+          cml asset publish data/experiment/plots/acc_vs_val_acc.png --md >> report.md
+          cml asset publish data/experiment/plots/loss_vs_val_loss.png --md >> report.md
+          
+          cml comment create report.md

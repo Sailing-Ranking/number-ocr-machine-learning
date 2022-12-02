@@ -1,0 +1,34 @@
+stages:
+  setup:
+    cmd: pipenv run python src/01_setup.py
+  train:
+    cmd: pipenv run python src/02_train.py
+    params:
+      - model.filters
+      - model.kernel_initializer
+      - model.input_shape
+      - model.activation
+      - model.out_activation
+      - model.pooling
+      - model.kernel_size
+      - compile.metrics
+      - train.validation_split
+      - train.epochs
+    outs:
+      - data/experiment/cnn_classifier
+      - data/experiment/history.json
+  evaluate:
+    cmd: pipenv run python src/03_evaluate.py
+    deps:
+      - data/experiment/cnn_classifier
+    metrics:
+      - data/experiment/metrics.json:
+          cache: false
+  visualize:
+    cmd: pipenv run python src/04_visualize.py
+    deps:
+      - data/experiment/metrics.json
+      - data/experiment/history.json
+    outs:
+      - data/experiment/plots/acc_vs_val_acc.png
+      - data/experiment/plots/loss_vs_val_loss.png
