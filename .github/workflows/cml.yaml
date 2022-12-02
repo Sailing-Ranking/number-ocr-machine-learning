@@ -23,7 +23,7 @@ jobs:
 
           # run the dvc pipeline
           pipenv run dvc repro
-          pipenv run dvc push
+          # pipenv run dvc push
       - name: Write CML report
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
