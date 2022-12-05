@@ -3,6 +3,9 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 name = "pypi"
 
+[scripts]
+test = "pytest -vv --cov --cov-report="
+
 [packages]
 pandas = "*"
 numpy = "*"
@@ -17,6 +20,10 @@ h5py = "*"
 isort = "*"
 black = "*"
 dvc = "*"
+pytest = "*"
+coverage = "*"
+pytest-cov = "*"
+dvc-gdrive = "*"
 
 [dev-packages]
 

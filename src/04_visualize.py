@@ -1,6 +1,18 @@
 import json
+import numpy as np
+import pandas as pd
 
 import matplotlib.pyplot as plt
+from mlxtend.plotting import plot_confusion_matrix
+from sklearn.metrics import confusion_matrix
+
+
+df_predictions = pd.read_csv("data/experiment/predictions.csv")
+
+y_pred = df_predictions["y_pred"].to_numpy()
+y_true = df_predictions["y_true"].to_numpy()
+
+confusion = confusion_matrix(y_true, y_pred)
 
 with open("data/experiment/history.json") as f:
     history = json.load(f)
@@ -25,4 +37,8 @@ with open("data/experiment/history.json") as f:
     plt.xlabel("epoch")
     plt.legend(["train", "validation"], loc="upper left")
     plt.savefig("data/experiment/plots/loss_vs_val_loss.png", dpi=120)
+    plt.close()
+
+    plot_confusion_matrix(confusion, figsize=(7, 7), show_normed=True)
+    plt.savefig("data/experiment/plots/confusion_matrix.png", dpi=120)
     plt.close()

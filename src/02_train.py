@@ -2,9 +2,9 @@ import json
 
 import tensorflow as tf
 
-from utils import load_params
+from utils import load_yaml
 
-params = load_params()
+params = load_yaml(path="params.yaml")
 
 (X_train, y_train), (X_test, y_test) = tf.keras.datasets.mnist.load_data()
 

@@ -1,10 +1,12 @@
 import json
 
 import numpy as np
+import pandas as pd
 import tensorflow as tf
 from sklearn.metrics import (
     accuracy_score,
     balanced_accuracy_score,
+    f1_score,
     precision_score,
     recall_score,
 )
@@ -17,10 +19,15 @@ pred = model.predict(X_test)
 
 y_pred = list()
 for prediction in pred:
+    print(prediction)
     y_pred.append(np.argmax(prediction))
+
+df = pd.DataFrame(data={"y_pred": y_pred, "y_true": y_test})
+df.to_csv("data/experiment/predictions.csv")
 
 acc = accuracy_score(y_test, y_pred)
 bacc = balanced_accuracy_score(y_test, y_pred)
+f1 = f1_score(y_test, y_pred, average="micro")
 precision = precision_score(y_test, y_pred, average="micro")
 recall = recall_score(y_test, y_pred, average="micro")
 
@@ -30,6 +37,7 @@ with open("data/experiment/metrics.json", "w") as f:
         {
             "accuracy": acc,
             "balanced_accuracy": bacc,
+            "f1": f1,
             "precision": precision,
             "recall": recall,
         },
