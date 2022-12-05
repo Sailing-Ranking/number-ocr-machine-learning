@@ -24,8 +24,8 @@ jobs:
           pipenv install --dev
 
           # run the dvc pipeline
-          pipenv run dvc repro
-          pipenv run dvc push
+          pipenv run dvc repro -f
+          # pipenv run dvc push
       - name: Write CML report
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -37,11 +37,12 @@ jobs:
 
           echo "## Wrokspace vs Main" >> report.md
 
+          echo "### Metrics" >> report.md
+          pipenv run dvc metrics diff --all --md main >> report.md
+
           echo "### Parameters" >> report.md
           pipenv run dvc params diff --all --md main >> report.md
 
-          echo "### Metrics" >> report.md
-          pipenv run dvc metrics diff --all --md main >> report.md
  
           echo "## Visualizations" >> report.md
           cml asset publish data/experiment/plots/acc_vs_val_acc.png --md >> report.md

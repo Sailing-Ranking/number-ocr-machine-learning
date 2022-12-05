@@ -28,6 +28,7 @@ stages:
     outs:
       - data/experiment/plots/acc_vs_val_acc.png
       - data/experiment/plots/loss_vs_val_loss.png
+      - data/experiment/plots/confusion_matrix.png
   test:
     cmd: pipenv run test src/05_test.py
     deps:
