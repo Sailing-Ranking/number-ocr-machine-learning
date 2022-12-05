@@ -35,8 +35,13 @@ jobs:
           # Post reports as comments in GitHub PRs
           echo "# Model Report" >> report.md
 
-          echo "## Metrics & Diff" >> report.md
-          dvc metrics diff --show-md main >> report.md
+          echo "## Wrokspace vs Main" >> report.md
+
+          echo "### Parameters" >> report.md
+          pipenv run dvc params diff --show-md main >> report.md
+
+          echo "### Metrics" >> report.md
+          pipenv run dvc metrics diff --show-md main >> report.md
  
           echo "## Visualizations" >> report.md
           cml asset publish data/experiment/plots/acc_vs_val_acc.png --md >> report.md
