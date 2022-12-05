@@ -19,6 +19,8 @@ stages:
       - data/experiment/history.json
   evaluate:
     cmd: pipenv run python src/03_evaluate.py
+    outs:
+      - data/experiment/predictions.csv
     deps:
       - data/experiment/cnn_classifier
     metrics:
@@ -27,6 +29,7 @@ stages:
   visualize:
     cmd: pipenv run python src/04_visualize.py
     deps:
+      - data/experiment/predictions.csv
       - data/experiment/metrics.json
       - data/experiment/history.json
     outs:

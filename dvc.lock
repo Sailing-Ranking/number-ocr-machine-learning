@@ -36,8 +36,11 @@ stages:
       md5: 2289e48163ce85408c8e9b0e57f8c6ce
       size: 218
     - path: data/experiment/metrics.json
-      md5: 174a96cde91f14e4b13c7d32bd51f9c9
-      size: 99
+      md5: 20d29ac4e222a15943321ca1c6864a41
+      size: 113
+    - path: data/experiment/predictions.csv
+      md5: 51d857b1fc974e00134373a7b85b216b
+      size: 88905
     outs:
     - path: data/experiment/plots/acc_vs_val_acc.png
       md5: 416e216d77dc937f56e7e247b40731c3
@@ -54,13 +57,16 @@ stages:
       nfiles: 5
     outs:
     - path: data/experiment/metrics.json
-      md5: 174a96cde91f14e4b13c7d32bd51f9c9
-      size: 99
+      md5: 20d29ac4e222a15943321ca1c6864a41
+      size: 113
+    - path: data/experiment/predictions.csv
+      md5: 51d857b1fc974e00134373a7b85b216b
+      size: 88905
   setup:
     cmd: pipenv run python src/01_setup.py
   test:
     cmd: pipenv run test src/05_test.py
     deps:
     - path: data/experiment/metrics.json
-      md5: 174a96cde91f14e4b13c7d32bd51f9c9
-      size: 99
+      md5: 20d29ac4e222a15943321ca1c6864a41
+      size: 113
