@@ -4,7 +4,9 @@ stages:
   train:
     cmd: pipenv run python src/02_train.py
     params:
-      - params.yaml
+      - model
+      - compile
+      - train
     outs:
       - data/experiment/cnn_classifier
       - data/experiment/history.json

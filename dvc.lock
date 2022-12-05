@@ -4,63 +4,67 @@ stages:
     cmd: pipenv run python src/02_train.py
     params:
       params.yaml:
-        compile.metrics: accuracy
-        model.activation: relu
-        model.filters: 32
-        model.input_shape:
-        - 28
-        - 28
-        - 1
-        model.kernel_initializer: he_uniform
-        model.kernel_size:
-        - 3
-        - 3
-        model.out_activation: softmax
-        model.pooling:
-        - 2
-        - 2
-        train.epochs: 3
-        train.validation_split: 0.25
+        compile:
+          metrics: accuracy
+        model:
+          filters: 32
+          kernel_initializer: he_uniform
+          input_shape:
+          - 28
+          - 28
+          - 1
+          activation: relu
+          out_activation: softmax
+          pooling:
+          - 2
+          - 2
+          kernel_size:
+          - 3
+          - 3
+          dropout: 0.5
+        train:
+          validation_split: 0.25
+          epochs: 3
     outs:
     - path: data/experiment/cnn_classifier
-      md5: bd3506e92a873be1a25e66c7a281fa33.dir
-      size: 1103956
+      md5: c53c937072a7e6e6652c157fcecb1baa.dir
+      size: 1103955
       nfiles: 5
     - path: data/experiment/history.json
-      md5: 2289e48163ce85408c8e9b0e57f8c6ce
-      size: 218
+      md5: 0cd82ce327d8bd7fb26255fc62f115a4
+      size: 217
   visualize:
     cmd: pipenv run python src/04_visualize.py
     deps:
     - path: data/experiment/history.json
-      md5: 2289e48163ce85408c8e9b0e57f8c6ce
-      size: 218
+      md5: 0cd82ce327d8bd7fb26255fc62f115a4
+      size: 217
     - path: data/experiment/metrics.json
-      md5: 20d29ac4e222a15943321ca1c6864a41
-      size: 113
+      md5: 8821d7b04d8cb41f3448a9ce9c3ee107
+      size: 114
     - path: data/experiment/predictions.csv
-      md5: 51d857b1fc974e00134373a7b85b216b
+      md5: 3fb6628bea3b4f6b455d43fa5fd187bf
       size: 88905
     outs:
     - path: data/experiment/plots/acc_vs_val_acc.png
-      md5: 416e216d77dc937f56e7e247b40731c3
-      size: 36395
+      md5: 42267ff5dd07e0405864982324a7d885
+      size: 36551
     - path: data/experiment/plots/loss_vs_val_loss.png
-      md5: 152c0c34e036d00d05ffe4401c7f98ab
-      size: 36840
+      md5: 47fc039fb5733a590bf4ce043c652325
+      size: 38879
   evaluate:
     cmd: pipenv run python src/03_evaluate.py
     deps:
     - path: data/experiment/cnn_classifier
-      md5: bd3506e92a873be1a25e66c7a281fa33.dir
-      size: 1103956
+      md5: c53c937072a7e6e6652c157fcecb1baa.dir
+      size: 1103955
       nfiles: 5
     outs:
     - path: data/experiment/metrics.json
-      md5: 20d29ac4e222a15943321ca1c6864a41
-      size: 113
+      md5: 8821d7b04d8cb41f3448a9ce9c3ee107
+      size: 114
     - path: data/experiment/predictions.csv
-      md5: 51d857b1fc974e00134373a7b85b216b
+      md5: 3fb6628bea3b4f6b455d43fa5fd187bf
       size: 88905
   setup:
     cmd: pipenv run python src/01_setup.py
@@ -68,5 +72,5 @@ stages:
     cmd: pipenv run test src/05_test.py
     deps:
     - path: data/experiment/metrics.json
-      md5: 20d29ac4e222a15943321ca1c6864a41
-      size: 113
+      md5: 8821d7b04d8cb41f3448a9ce9c3ee107
+      size: 114

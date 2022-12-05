@@ -38,7 +38,7 @@ jobs:
           echo "## Wrokspace vs Main" >> report.md
 
           echo "### Parameters" >> report.md
-          pipenv run dvc params diff --show-md main >> report.md
+          pipenv run dvc params diff --all --show-md main >> report.md
 
           echo "### Metrics" >> report.md
           pipenv run dvc metrics diff --show-md main >> report.md
