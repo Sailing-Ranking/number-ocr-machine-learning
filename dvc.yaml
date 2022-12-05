@@ -4,16 +4,7 @@ stages:
   train:
     cmd: pipenv run python src/02_train.py
     params:
-      - model.filters
-      - model.kernel_initializer
-      - model.input_shape
-      - model.activation
-      - model.out_activation
-      - model.pooling
-      - model.kernel_size
-      - compile.metrics
-      - train.validation_split
-      - train.epochs
+      - params.yaml
     outs:
       - data/experiment/cnn_classifier
       - data/experiment/history.json
