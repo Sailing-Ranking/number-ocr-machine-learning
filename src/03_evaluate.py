@@ -11,6 +11,10 @@ from sklearn.metrics import (
     recall_score,
 )
 
+from utils import load_yaml
+
+params = load_yaml(path="params.yaml")
+
 model = tf.keras.models.load_model("data/experiment/cnn_classifier")
 
 (_, _), (X_test, y_test) = tf.keras.datasets.mnist.load_data()
@@ -27,9 +31,9 @@ df.to_csv("data/experiment/predictions.csv")
 
 acc = accuracy_score(y_test, y_pred)
 bacc = balanced_accuracy_score(y_test, y_pred)
-f1 = f1_score(y_test, y_pred, average="micro")
-precision = precision_score(y_test, y_pred, average="micro")
-recall = recall_score(y_test, y_pred, average="micro")
+f1 = f1_score(y_test, y_pred, average=params["evaluate"]["average"])
+precision = precision_score(y_test, y_pred, average=params["evaluate"]["average"])
+recall = recall_score(y_test, y_pred, average=params["evaluate"]["average"])
 
 
 with open("data/experiment/metrics.json", "w") as f:
