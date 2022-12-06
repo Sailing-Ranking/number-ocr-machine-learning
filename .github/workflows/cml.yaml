@@ -32,7 +32,7 @@ jobs:
           GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
         run: |
           git fetch --prune
-          pipenv run dvc pull
+          # pipenv run dvc pull
 
           # Post reports as comments in GitHub PRs
           echo "# Model Report" >> report.md
