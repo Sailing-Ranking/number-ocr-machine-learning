@@ -24,7 +24,7 @@ jobs:
           pipenv install --dev
 
           # run the dvc pipeline
-          pipenv run dvc repro -f
+          pipenv run dvc repro
           # pipenv run dvc push
       - name: Write CML report
         env:

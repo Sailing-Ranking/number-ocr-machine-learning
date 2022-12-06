@@ -27,47 +27,47 @@ stages:
           epochs: 2
     outs:
     - path: data/experiment/cnn_classifier
-      md5: 81730d1da0350368958710e41226d54a.dir
-      size: 1103955
+      md5: f4ce00b8cc28c0c0fad1c23c02a12576.dir
+      size: 1103956
       nfiles: 5
     - path: data/experiment/history.json
-      md5: fff785dbf1dad6d2ff0d08efd43952b0
-      size: 214
+      md5: c9ede9e26ad98ccf3929a0f1b1d0da5d
+      size: 218
   visualize:
     cmd: pipenv run python src/04_visualize.py
     deps:
     - path: data/experiment/history.json
-      md5: fff785dbf1dad6d2ff0d08efd43952b0
-      size: 214
+      md5: c9ede9e26ad98ccf3929a0f1b1d0da5d
+      size: 218
     - path: data/experiment/metrics.json
-      md5: 1e8cfc38f5d72330189d80af9517c1d2
+      md5: a51ff67353086d4bfc2cb1ae9df47a7a
       size: 114
     - path: data/experiment/predictions.csv
-      md5: a50610e016562bef3a3de50d6cccc87a
+      md5: c569df9cefa446deae562c71e038a0f1
       size: 88905
     outs:
     - path: data/experiment/plots/acc_vs_val_acc.png
-      md5: 4719c0dfcbbd4280893a8c2a587d44e6
-      size: 36967
+      md5: 1a743372077be91ab11080cbb87baa3e
+      size: 43118
     - path: data/experiment/plots/confusion_matrix.png
-      md5: 9132be81398d4712aef4f4e686d85a47
-      size: 92022
+      md5: 8a4736089049157bd6388b4a4def5cb2
+      size: 84887
     - path: data/experiment/plots/loss_vs_val_loss.png
-      md5: b289b83a4ce37039b5b826e6705faecd
-      size: 34581
+      md5: 89cb35d25d1ba26e77aaeb1fdc9133c2
+      size: 35937
   evaluate:
     cmd: pipenv run python src/03_evaluate.py
     deps:
     - path: data/experiment/cnn_classifier
-      md5: 81730d1da0350368958710e41226d54a.dir
-      size: 1103955
+      md5: f4ce00b8cc28c0c0fad1c23c02a12576.dir
+      size: 1103956
       nfiles: 5
     outs:
     - path: data/experiment/metrics.json
-      md5: 1e8cfc38f5d72330189d80af9517c1d2
+      md5: a51ff67353086d4bfc2cb1ae9df47a7a
       size: 114
     - path: data/experiment/predictions.csv
-      md5: a50610e016562bef3a3de50d6cccc87a
+      md5: c569df9cefa446deae562c71e038a0f1
       size: 88905
   setup:
     cmd: pipenv run python src/01_setup.py
@@ -75,5 +75,5 @@ stages:
     cmd: pipenv run test src/05_test.py
     deps:
     - path: data/experiment/metrics.json
-      md5: 1e8cfc38f5d72330189d80af9517c1d2
+      md5: a51ff67353086d4bfc2cb1ae9df47a7a
       size: 114
