@@ -24,7 +24,7 @@ jobs:
           pipenv install --dev
 
           # run the dvc pipeline
-          pipenv run dvc repro -f
+          pipenv run dvc repro -f --no-run-cache
           pipenv run dvc push
       - name: Write CML report
         env:
@@ -32,7 +32,6 @@ jobs:
           GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
         run: |
           git fetch --prune
-          # pipenv run dvc pull
 
           # Post reports as comments in GitHub PRs
           echo "# Model Report" >> report.md
