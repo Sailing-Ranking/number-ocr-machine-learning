@@ -32,21 +32,21 @@ jobs:
         run: |
           git fetch --prune
 
-          # # Post reports as comments in GitHub PRs
-          # echo "# Model Report" >> report.md
+          # Post reports as comments in GitHub PRs
+          echo "# Model Report" >> report.md
 
-          # echo "## Wrokspace vs Main" >> report.md
+          echo "## Wrokspace vs Main" >> report.md
 
           echo "### Metrics" >> report.md
-          dvc metrics diff --all --show-md main >> report.md
+          pipenv run dvc metrics diff --all --md main >> report.md
 
-          # echo "### Parameters" >> report.md
-          # pipenv run dvc params diff --all --md main >> report.md
+          echo "### Parameters" >> report.md
+          pipenv run dvc params diff --all --md main >> report.md
 
  
-          # echo "## Visualizations" >> report.md
-          # cml asset publish data/experiment/plots/acc_vs_val_acc.png --md >> report.md
-          # cml asset publish data/experiment/plots/loss_vs_val_loss.png --md >> report.md
-          # cml asset publish data/experiment/plots/confusion_matrix.png --md >> report.md
+          echo "## Visualizations" >> report.md
+          cml asset publish data/experiment/plots/acc_vs_val_acc.png --md >> report.md
+          cml asset publish data/experiment/plots/loss_vs_val_loss.png --md >> report.md
+          cml asset publish data/experiment/plots/confusion_matrix.png --md >> report.md
           
           cml comment create report.md
