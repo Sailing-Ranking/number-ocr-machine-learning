@@ -11,6 +11,6 @@ compile:
   metrics: "accuracy"
 train:
   validation_split: .25
-  epochs: 2
+  epochs: 3
 evaluate:
   average: "micro"
