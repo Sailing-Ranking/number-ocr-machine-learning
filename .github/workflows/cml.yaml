@@ -24,13 +24,15 @@ jobs:
           pipenv install --dev
 
           # run the dvc pipeline
-          pipenv run dvc repro
-          pipenv run dvc push
+          pipenv run dvc repro -f --no-run-cache
+          # pipenv run dvc push
       - name: Write CML report
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
         run: |
           git fetch --prune
+          # pipenv run dvc pull
 
           # Post reports as comments in GitHub PRs
           echo "# Model Report" >> report.md
@@ -41,7 +43,7 @@ jobs:
           pipenv run dvc metrics diff --all --md origin/main >> report.md
 
           echo "### Parameters" >> report.md
-          pipenv run dvc params diff --all --md main >> report.md
+          pipenv run dvc params diff --all --md origin/main >> report.md
 
  
           echo "## Visualizations" >> report.md

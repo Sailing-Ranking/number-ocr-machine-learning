@@ -1,11 +1,10 @@
 import json
-import numpy as np
-import pandas as pd
 
 import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 from mlxtend.plotting import plot_confusion_matrix
 from sklearn.metrics import confusion_matrix
-
 
 df_predictions = pd.read_csv("data/experiment/predictions.csv")
 

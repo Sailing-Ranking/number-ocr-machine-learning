@@ -46,7 +46,10 @@ model.compile(
 )
 
 history = model.fit(
-    X_train, y_train, validation_split=params["train"]["validation_split"], epochs=2
+    X_train,
+    y_train,
+    validation_split=params["train"]["validation_split"],
+    epochs=params["train"]["epochs"],
 )
 
 
