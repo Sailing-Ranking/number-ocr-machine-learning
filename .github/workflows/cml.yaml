@@ -30,6 +30,7 @@ jobs:
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
+          TB_CREDENTIALS: ${{ secrets.TB_CREDENTIALS }}
         run: |
           git fetch --prune
           # pipenv run dvc pull
