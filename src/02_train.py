@@ -45,11 +45,16 @@ model.compile(
     metrics=[params["compile"]["metrics"]],
 )
 
+tensorboard_callback = tf.keras.callbacks.TensorBoard(
+    log_dir="./logs", histogram_freq=1
+)
+
 history = model.fit(
     X_train,
     y_train,
     validation_split=params["train"]["validation_split"],
     epochs=params["train"]["epochs"],
+    callbacks=[tensorboard_callback],
 )
 
 
