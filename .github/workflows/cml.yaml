@@ -30,12 +30,15 @@ jobs:
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
+          TB_CREDENTIALS: ${{ secrets.TB_CREDENTIALS }}
         run: |
           git fetch --prune
           # pipenv run dvc pull
 
           # Post reports as comments in GitHub PRs
           echo "# Model Report" >> report.md
+
+          # cml tensorboard connect --logdir=./logs --name="Go to tensorboard" --md >> report.md
 
           echo "## Wrokspace vs Main" >> report.md
 
